@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Color Picker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 40px;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 200px;
+      }
+      .color-preview {
+        height: 150px;
+        width: 150px;
+        margin: 20px auto;
+        border: 2px solid #000;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const { useState } = React;
+
+      function ColorPicker() {
+        // Define the state for color
+        const [color, setColor] = useState("#000000");
+
+        // Event handler to update the state when input changes
+        const handleColorChange = (e) => {
+          setColor(e.target.value);
+        };
+
+        return (
+          <div>
+            <h1>Interactive Color Picker</h1>
+            <input 
+              type="text" 
+              value={color} 
+              onChange={handleColorChange} 
+              placeholder="Enter HEX color code" 
+              maxLength="7" 
+            />
+            <div 
+              className="color-preview" 
+              style={{ backgroundColor: color }} 
+            ></div>
+          </div>
+        );
+      }
+
+      // Render the ColorPicker component to the root div
+      ReactDOM.render(<ColorPicker />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
